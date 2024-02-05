@@ -41,6 +41,7 @@ dependencies:
   flutter_local_notifications: ^16.3.2
   app_settings: ^5.1.1
   get: ^4.6.6
+  http: ^1.2.0
 
 
 dev_dependencies:

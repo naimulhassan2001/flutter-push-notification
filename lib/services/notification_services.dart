@@ -47,11 +47,14 @@ class NotificationService {
       print(message.notification!.body.toString());
       showNotification(message);
     });
+
   }
 
   Future<void> showNotification(RemoteMessage message) async {
 
     String id = message.notification?.android?.channelId ?? "0" ;
+    print("===================================> ${message.notification?.android?.channelId ?? "0"}") ;
+
     AndroidNotificationChannel channel = AndroidNotificationChannel(
         id,
         "High Importance Notification",
