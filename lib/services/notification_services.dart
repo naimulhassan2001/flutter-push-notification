@@ -29,7 +29,7 @@ class NotificationService {
     }
   }
 
-  Future<void> initLocalNotification() async {
+  Future<void> initLocalNotification({RemoteMessage? message}) async {
     var androidInitializationSettings =
     const AndroidInitializationSettings("@mipmap/ic_launcher");
     var iosInitializationSettings = const DarwinInitializationSettings();
@@ -39,13 +39,19 @@ class NotificationService {
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (payload) {});
+
+    if(message != null) {
+      showNotification(message) ;
+
+    }
+
   }
 
   void firebaseInit() {
     FirebaseMessaging.onMessage.listen((message) {
       print(message.notification!.title.toString());
       print(message.notification!.body.toString());
-      showNotification(message);
+      initLocalNotification(message: message);
     });
 
   }
